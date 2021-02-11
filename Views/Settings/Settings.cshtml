@@ -1,0 +1,55 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Italliance.Modules.DnnHosting.Models.DnnHostingSettings>
+
+@using DotNetNuke.Web.Mvc.Helpers
+@using Italliance.Modules.DnnHosting.Models
+<div class="dnnForm dnnClear">
+    <h2 class="dnnFormSectionHead">
+        <a href="#">@(Dnn.LocalizeString("BasicSettings.Text"))</a>
+    </h2>
+    <fieldset>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.IisAdministrationUrl, Dnn.LocalizeString("IisAdministrationUrl.Text"), Dnn.LocalizeString("IisAdministrationUrl.Help"))
+            @Html.TextBoxFor(m => Model.IisAdministrationUrl)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.IisAdministrationApiKey, Dnn.LocalizeString("IisAdministrationApiKey.Text"), Dnn.LocalizeString("IisAdministrationApiKey.Help"))
+            @Html.TextBoxFor(m => Model.IisAdministrationApiKey)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.PageSize, Dnn.LocalizeString("PageSize.Text"), Dnn.LocalizeString("PageSize.Help"))
+            @Html.TextBoxFor(m => Model.PageSize, new {@type = "number"})
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.DaysToExpire, Dnn.LocalizeString("DaysToExpire.Text"), Dnn.LocalizeString("DaysToExpire.Help"))
+            @Html.TextBoxFor(m => Model.DaysToExpire, new {@type = "number"})
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.AdminEmail, Dnn.LocalizeString("AdminEmail.Text"), Dnn.LocalizeString("AdminEmail.Help"))
+            @Html.TextBoxFor(m => Model.AdminEmail)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.EmailFrom, Dnn.LocalizeString("EmailFrom.Text"), Dnn.LocalizeString("EmailFrom.Help"))
+            @Html.TextBoxFor(m => Model.EmailFrom)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.AdminEmailSubject, Dnn.LocalizeString("AdminEmailSubject.Text"), Dnn.LocalizeString("AdminEmailSubject.Help"))
+            @Html.TextBoxFor(m => Model.AdminEmailSubject)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.AdminEmailTemplate, Dnn.LocalizeString("AdminEmailTemplate.Text"), Dnn.LocalizeString("AdminEmailTemplate.Help"))
+            @Html.TextAreaFor(m => Model.AdminEmailTemplate)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.ClientEmailSubject, Dnn.LocalizeString("ClientEmailSubject.Text"), Dnn.LocalizeString("ClientEmailSubject.Help"))
+            @Html.TextBoxFor(m => Model.ClientEmailSubject)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.ClientEmailTemplate, Dnn.LocalizeString("ClientEmailTemplate.Text"), Dnn.LocalizeString("ClientEmailTemplate.Help"))
+            @Html.TextAreaFor(m => Model.ClientEmailTemplate)
+        </div>
+        <div class="dnnFormItem">
+            @Dnn.LabelFor(m => Model.ClientPartialEmailTemplate, Dnn.LocalizeString("ClientPartialEmailTemplate.Text"), Dnn.LocalizeString("ClientPartialEmailTemplate.Help"))
+            @Html.TextAreaFor(m => Model.ClientPartialEmailTemplate)
+        </div>
+    </fieldset>
+</div>

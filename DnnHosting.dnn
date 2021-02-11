@@ -1,0 +1,126 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="DnnHosting" type="Module" version="01.00.00">
+      <friendlyName>DnnHosting</friendlyName>
+      <description>DnnHosting</description>
+      <iconFile>~/Icons/Sigma/Software_32X32_Standard.png</iconFile>
+      <owner>
+        <name>italliance.kz</name>
+        <organization>italliance.kz</organization>
+        <url>https://italliance.kz</url>
+        <email>support@italliance.kz</email>
+      </owner>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">09.08.01</dependency>
+        <dependency type="managedPackage" version="0.14.2">R7.Dnn.Extensions</dependency>
+      </dependencies>
+      <components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\MVC\DnnHosting</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>01.00.00.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+            <script type="UnInstall">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>Uninstall.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+          </scripts>
+        </component>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules/MVC/DnnHosting</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+        <component type="Module">
+          <desktopModule>
+            <moduleName>DnnHosting</moduleName>
+            <foldername>DnnHosting</foldername>
+            <businessControllerClass>Italliance.Modules.DnnHosting.Components.FeatureController</businessControllerClass>
+            <supportedFeatures />
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>DnnHosting</friendlyName>
+                <defaultCacheTime>0</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>Italliance.Modules.DnnHosting.Controllers/Clients/Index.mvc</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Edit</controlKey>
+                    <controlSrc>Italliance.Modules.DnnHosting.Controllers/Clients/Edit.mvc</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Edit Content</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                    <supportsPopUps>True</supportsPopUps>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>Italliance.Modules.DnnHosting.Controllers/Settings/Settings.mvc</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>DnnHosting Settings</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>DnnHosting.dll</name>
+              <path>bin</path>
+            </assembly>
+            <assembly>
+              <name>EPPlus.dll</name>
+              <path>bin</path>
+              <version>4.5.3.3</version>
+            </assembly>
+            <assembly>
+              <name>Handlebars.dll</name>
+              <path>bin</path>
+              <version>2.0.4.0</version>
+            </assembly>
+            <assembly>
+              <name>Newtonsoft.Json.dll</name>
+              <path>bin</path>
+              <version>12.0.0.0</version>
+            </assembly>
+            <assembly>
+              <name>RestSharp.dll</name>
+              <path>bin</path>
+              <version>106.11.7.0</version>
+            </assembly>
+            <assembly>
+              <name>linq2db.dll</name>
+              <path>bin</path>
+              <version>3.2.3.0</version>
+            </assembly>            
+          </assemblies>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

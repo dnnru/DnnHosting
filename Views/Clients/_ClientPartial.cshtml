@@ -1,0 +1,81 @@
+﻿@using DotNetNuke.Web.Mvc.Helpers
+@using Italliance.Modules.DnnHosting.Models
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Italliance.Modules.DnnHosting.Models.ClientDto>
+
+@{
+    string panelCss = "panel-default";
+    switch (Model.ClientStatus)
+    {
+        case ClientStatus.Ok:
+            panelCss = "panel-success";
+            break;
+        case ClientStatus.PaymentPending:
+            panelCss = "panel-warning";
+            break;
+        case ClientStatus.Disabled:
+            panelCss = "panel-danger";
+            break;
+    }
+}
+
+<div class="col-sm-3">
+    <div id="client-panel-@Model.ClientId" data-panel="@((int) Model.ClientStatus)" class="panel @panelCss">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                ClientId: @Html.DisplayTextFor(m => m.ClientId)
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.ClientStatus):&nbsp;</strong>@Html.DisplayTextFor(m => m.ClientStatus)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.Name):&nbsp;</strong>@Html.DisplayTextFor(m => m.Name)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.Email):&nbsp;</strong>@Html.DisplayTextFor(m => m.Email)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.Phone):&nbsp;</strong>@Html.DisplayTextFor(m => m.Phone)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.Domain):&nbsp;</strong>@Html.DisplayTextFor(m => m.Domain)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.HostingEndDate):&nbsp;</strong>@Html.ValueFor(m => m.HostingEndDate, "{0:dd.MM.yyyy}")
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.HostSpace):&nbsp;</strong>@Html.DisplayTextFor(m => m.HostSpace)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.PageQuota):&nbsp;</strong>@Html.DisplayTextFor(m => m.PageQuota)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.UserQuota):&nbsp;</strong>@Html.DisplayTextFor(m => m.UserQuota)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.PaymentPeriod):&nbsp;</strong>@Html.DisplayTextFor(m => m.PaymentPeriod)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.PaymentMethod):&nbsp;</strong>@Html.DisplayTextFor(m => m.PaymentMethod)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.LastPaymentDate):&nbsp;</strong>@Html.ValueFor(m => m.LastPaymentDate, "{0:dd.MM.yyyy}")
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.IsPaymentOk):&nbsp;</strong>@Html.DisplayTextFor(m => m.IsPaymentOk)
+            </div>
+            <div>
+                <strong>@Html.DisplayNameFor(m => m.Comments):&nbsp;</strong>
+            </div>
+            <div>
+                @Html.DisplayTextFor(m => m.Comments)
+            </div>
+            <p>&nbsp;</p>
+            <p>
+                <a href="@Url.Action("Edit", "Clients", new {ctl = "Edit", clientId = Model.ClientId})" class="btn btn-info">@Dnn.LocalizeString("EditItem")</a>
+                <a href="@Url.Action("Delete", "Clients", new {clientId = Model.ClientId})" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?');">@Dnn.LocalizeString("DeleteItem")</a>
+            </p>
+        </div>
+    </div>
+</div>

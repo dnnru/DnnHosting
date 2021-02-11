@@ -1,0 +1,5 @@
+﻿DROP PROCEDURE IF EXISTS {databaseOwner}[{objectQualifier}DnnHosting_IsDomainDisabled]
+GO
+
+DROP TABLE IF EXISTS {databaseOwner}[{objectQualifier}DnnHosting_Clients]
+GO

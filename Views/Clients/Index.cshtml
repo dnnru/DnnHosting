@@ -1,0 +1,87 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Italliance.Modules.DnnHosting.ViewModels.ClientListViewModel>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using Italliance.Modules.DnnHosting.Components.Mvc.Paging
+@{
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/Resources/Shared/scripts/dnn.utility.js");
+}
+<div id="DnnHosting-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <div style="margin: 0 auto; display: table; text-align: center;">
+            <div class="form-inline" role="form">
+                <div class="form-group">
+                    <label for="txtClientNameSearch">Name:</label>
+                    <input type="text" class="form-control" id="txtClientNameSearch" placeholder="Client Name">
+                </div>
+                <span>&nbsp;OR&nbsp;</span>
+                <div class="form-group">
+                    <label for="txtClientEmailSearch">Email:</label>
+                    <input type="text" class="form-control" id="txtClientEmailSearch" placeholder="Client Email">
+                </div>
+                <span>&nbsp;OR&nbsp;</span>
+                <div class="form-group">
+                    <label for="txtClientDomainSearch">Domain:</label>
+                    <input type="text" class="form-control" id="txtClientDomainSearch" placeholder="Client Domain">
+                </div>
+                <button type="submit" id="btnSearch-@Dnn.ModuleContext.ModuleId" class="btn btn-default">Search</button>
+                <button type="submit" id="btnClear-@Dnn.ModuleContext.ModuleId" class="btn btn-default">Clear</button>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <a href="@Url.Action("Edit", "Clients", new {ctl = "Edit", clientId = -1})" class="btn btn-info">@Dnn.LocalizeString("AddClient.Text")</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pull-right">
+                    @if (Model != null && Model.Clients != null && Model.Clients.Count > 0)
+                    {
+                        <a href="@Url.Action("ExportToExcel", "Clients")" class="btn btn-success">@Dnn.LocalizeString("ExportToExcel.Text")</a>
+                    }
+                    <a href="@Url.Action("Import", "Clients")" class="btn btn-primary">Import from Excel</a>
+                </div>
+            </div>
+        </div>
+        @if (Model == null || Model.Clients == null || Model.Clients.Count == 0)
+        {
+            <h3>@Dnn.LocalizeString("NoItems")</h3>
+        }
+        else
+        {
+            <p>&nbsp;</p>
+            <div class="row">
+                @foreach (var client in Model.Clients)
+                {
+                    Html.RenderPartial("_ClientPartial", client, null);
+                }
+
+            </div>
+        }
+    </div>
+    @if (Model != null && Model.Clients != null && Model.Clients.Count > 0 && Model.Clients.TotalCount > Model.Context.Settings.PageSize)
+    {
+        <div>
+            @Html.Pager(Model.Clients.PageSize, Model.Clients.PageIndex + 1, Model.Clients.TotalCount).Options(o => o.Action("Index", "Clients").DisplayTemplate("Bootstrap3Pagination").PageRouteValueKey("page"))
+        </div>
+    }
+</div>
+<script type="text/javascript">
+jQuery(function ($) {
+    let mainUrl = "@Url.Action("Index", "Clients")";
+    $("#btnSearch-@Dnn.ModuleContext.ModuleId").click(function (e) {
+        e.preventDefault();
+        let name = encodeURIComponent($("#txtClientNameSearch").val());
+        let email = encodeURIComponent($("#txtClientEmailSearch").val());
+        let domain = encodeURIComponent($("#txtClientDomainSearch").val());
+        window.location.href = mainUrl + "?name=" + name + "&email=" + email + "&domain=" + domain;
+    });
+    $("#btnClear-@Dnn.ModuleContext.ModuleId").click(function (e) {
+        e.preventDefault();
+        window.location.href = mainUrl;
+    });
+});
+</script>

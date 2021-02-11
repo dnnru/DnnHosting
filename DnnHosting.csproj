@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4130D773-4930-4C21-9BCF-0C5244F585D0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Italliance.Modules.DnnHosting</RootNamespace>
+    <AssemblyName>DnnHosting</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetNuke, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Abstractions, Version=9.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.DependencyInjection, Version=9.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Instrumentation, Version=9.7.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\dnndev\bin\DotNetNuke.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Client, Version=9.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Mvc, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1">
+      <HintPath>packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Handlebars, Version=2.0.4.0, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
+      <HintPath>packages\Handlebars.Net.2.0.4\lib\net46\Handlebars.dll</HintPath>
+    </Reference>
+    <Reference Include="linq2db, Version=3.2.3.0, Culture=neutral, PublicKeyToken=e41013125f9e410a">
+      <HintPath>packages\linq2db.3.2.3\lib\net46\linq2db.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="R7.Dnn.Extensions, Version=0.14.2.21625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\R7.Dnn.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75">
+      <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\bin\System.Web.Helpers.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\bin\System.Web.Mvc.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\bin\System.Web.Razor.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\bin\System.Web.WebPages.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\bin\System.Web.WebPages.Deployment.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\bin\System.Web.WebPages.Razor.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Constants.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\CollectionColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\ColumnToCollectionConfiguration.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\ColumnToCollectionDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\ICollectionColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\ISimpleCollectionColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\NewableCollectionColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\NewableColumnToCollectionDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\SimpleCollectionColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\SimpleNewableCollectionColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\DataExtractors\ColumnDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\Data\CellAddress.cs" />
+    <Compile Include="Components\ExcelDataExtractor\Data\PropertyExtractionContext.cs" />
+    <Compile Include="Components\ExcelDataExtractor\ExpressionHelper.cs" />
+    <Compile Include="Components\ExcelDataExtractor\ICollectionPropertyConfiguration.cs" />
+    <Compile Include="Components\ExcelDataExtractor\IDataExtractorInterfaces.cs" />
+    <Compile Include="Components\ExcelDataExtractor\PropertyValueSetter.cs" />
+    <Compile Include="Components\ExcelDataExtractor\RowDataExtractor.cs" />
+    <Compile Include="Components\ExcelDataExtractor\SpreadsheetHelper.cs" />
+    <Compile Include="Components\ExcelDataExtractor\WorksheetExtensions.cs" />
+    <Compile Include="Components\FeatureController.cs" />
+    <Compile Include="Components\IisAdministrationClient.cs" />
+    <Compile Include="Components\IMapper.cs" />
+    <Compile Include="Components\ExcelHelper.cs" />
+    <Compile Include="Components\Mapper.cs" />
+    <Compile Include="Components\Mvc\Bootstrap\BootstrapControl.cs" />
+    <Compile Include="Components\Mvc\Bootstrap\Buttons.cs" />
+    <Compile Include="Components\Mvc\Bootstrap\InputExtensions.cs" />
+    <Compile Include="Components\Mvc\DateTimePicker\DateTimePickerSettings.cs" />
+    <Compile Include="Components\Mvc\DateTimePicker\DateTimeCategory.cs" />
+    <Compile Include="Components\Mvc\DateTimePicker\DateTimeInputExtensions.cs" />
+    <Compile Include="Components\Mvc\Excel\ExcelColumnStyleAttribute.cs" />
+    <Compile Include="Components\Mvc\Excel\ExcelDisplayNameAttribute.cs" />
+    <Compile Include="Components\Mvc\Excel\ExcelIgnoreAttribute.cs" />
+    <Compile Include="Components\Mvc\Excel\ExcelResult.cs" />
+    <Compile Include="Components\Mvc\Excel\ExcelSheetStyleAttribute.cs" />
+    <Compile Include="Components\Mvc\Excel\ExcelValueFormatAttribute.cs" />
+    <Compile Include="Components\Mvc\FlashMessages\FlashMessage.cs" />
+    <Compile Include="Components\Mvc\FlashMessages\FlashMessageCookieTransport.cs" />
+    <Compile Include="Components\Mvc\FlashMessages\FlashMessageHtmlHelper.cs" />
+    <Compile Include="Components\Mvc\FlashMessages\FlashMessageModel.cs" />
+    <Compile Include="Components\Mvc\FlashMessages\FlashMessageSessionTransport.cs" />
+    <Compile Include="Components\Mvc\FlashMessages\IFlashMessageTransport.cs" />
+    <Compile Include="Components\Mvc\HtmlHelpers.cs" />
+    <Compile Include="Components\Mvc\Paging\Pager.cs" />
+    <Compile Include="Components\Mvc\Paging\PagerOptions.cs" />
+    <Compile Include="Components\Mvc\Paging\PagerOptionsBuilder.cs" />
+    <Compile Include="Components\Mvc\Paging\PaginationLink.cs" />
+    <Compile Include="Components\Mvc\Paging\PaginationModel.cs" />
+    <Compile Include="Components\Mvc\Paging\PagingExtensions.cs" />
+    <Compile Include="Components\Mvc\Paging\RouteValueDictionaryExtensions.cs" />
+    <Compile Include="Components\Mvc\Extensions.cs" />
+    <Compile Include="Components\Mvc\TemplatesConsts.cs" />
+    <Compile Include="Components\ReplaceRenderer.cs" />
+    <Compile Include="Components\Resource\AssemblyResourceLocator.cs" />
+    <Compile Include="Components\Resource\EmbeddedResourceLoader.cs" />
+    <Compile Include="Components\Resource\ILoadResources.cs" />
+    <Compile Include="Components\Resource\ILocateResources.cs" />
+    <Compile Include="Components\Resource\ResourceEntry.cs" />
+    <Compile Include="Components\Resource\ResourceReference.cs" />
+    <Compile Include="Components\DnnDataConnection.cs" />
+    <Compile Include="Components\Tasks\DnnHostingScheduler.cs" />
+    <Compile Include="Components\Tasks\SchedulerHelper.cs" />
+    <Compile Include="Components\Utils.cs" />
+    <Compile Include="Controllers\BaseDnnController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Models\ClientDto.cs" />
+    <Compile Include="Models\ClientStatus.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\EmailTemplates.cs" />
+    <Compile Include="Models\IClient.cs" />
+    <Compile Include="Models\IEmailTemplates.cs" />
+    <Compile Include="Models\ITrackableEntity.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\DnnHostingSettings.cs" />
+    <Compile Include="Models\Portal.cs" />
+    <Compile Include="Models\PortalAlias.cs" />
+    <Compile Include="Models\SiteInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteConfig.cs" />
+    <Compile Include="Services\ClientDataService.cs" />
+    <Compile Include="Services\IClientDataService.cs" />
+    <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AdminEmailViewModel.cs" />
+    <Compile Include="ViewModels\ClientListViewModel.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\ImportViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+    <EmbeddedResource Include="EmailTemplates\Admin.html" />
+    <EmbeddedResource Include="EmailTemplates\Client.html" />
+    <EmbeddedResource Include="EmailTemplates\ClientPartial.html" />
+    <Content Include="License.txt" />
+    <Content Include="module.css" />
+    <Content Include="ReleaseNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DnnHosting.dnn">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BuildScripts\ModulePackage.targets" />
+    <Content Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Settings.resx">
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Clients\ExportToExcel.cshtml" />
+    <Content Include="Views\Clients\Import.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Settings\Settings.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients\_ClientPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Bootstrap3Pagination.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Bootstrap4Pagination.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Clients.resx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>
+          </DevelopmentServerVPath>
+          <IISUrl>http://dnn9dev.me/desktopmodules/mvc/DnnHosting</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://dnn9dev.me</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <Extension>zip</Extension>
+    <DNNFileName>DnnHosting</DNNFileName>
+    <PackageName>DnnHosting</PackageName>
+  </PropertyGroup>
+  <Import Project="BuildScripts\ModulePackage.Targets" />
+  <Target Name="AfterBuild" DependsOnTargets="PackageModule">
+  </Target>
+</Project>

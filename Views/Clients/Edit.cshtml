@@ -1,0 +1,145 @@
+﻿@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using DotNetNuke.Web.Mvc.Helpers
+@using Italliance.Modules.DnnHosting.Components.Mvc
+@using Italliance.Modules.DnnHosting.Components.Mvc.DateTimePicker
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Italliance.Modules.DnnHosting.Models.ClientDto>
+@{
+    var moduleId = Dnn.ModuleContext.ModuleId;
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/DnnHosting/Assets/bootstrap-datepicker/css/bootstrap-datepicker.min.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/DnnHosting/module.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/DnnHosting/Assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/DnnHosting/Assets/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js");
+}
+@if (Model.SetupRequired)
+{
+    <h3 style="color: red;">Please, setup 'IIS Administration Api Key' in module settings!</h3>
+    <p>
+        <a id="cancelSetup" href="/default.aspx?tabid=@Dnn.ActivePage.TabID&ctl=module&moduleid=@Dnn.ModuleContext.ModuleId" class="btn btn-info">Go to module settings</a>
+        <a id="cancelSetup" href="@Url.Action("Index", "Clients")" class="btn btn-danger">@Dnn.LocalizeString("Cancel")</a>
+    </p>
+}
+else
+{
+    if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div>
+            <strong>@Html.DisplayNameFor(m => m.ErrorMessage):</strong>&nbsp;<span style="color: red;">@Html.DisplayTextFor(m => m.ErrorMessage)</span>
+        </div>
+    }
+
+<div class="form-horizontal dnnhosting-editclient" id="editclient-@moduleId" role="form">
+    @Html.HiddenFor(m => m.PortalId)
+    @Html.HiddenFor(m => m.ClientId)
+    @Html.HiddenFor(m => m.LastModifiedByUserId)
+    @Html.HiddenFor(m => m.CreatedByUserId)
+    @Html.HiddenFor(m => m.LastModifiedOnDate)
+    @Html.HiddenFor(m => m.CreatedOnDate)
+    <div class="form-group@(Html.ValidationErrorFor(m => m.Name, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.Name, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.Name, new {@class = string.Format("{0}{1}", TemplatesConsts.INPUT, " input-required")})
+            @Html.ValidationMessageFor(m => m.Name, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.Email, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.Email, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.Email, new {@class = string.Format("{0}{1}", TemplatesConsts.INPUT, " input-required")})
+            @Html.ValidationMessageFor(m => m.Email, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.Phone, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.Phone, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.Phone, new {@class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.Phone, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.Domain, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.Domain, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.Domain, new {@class = string.Format("{0}{1}", TemplatesConsts.INPUT, " input-required")})
+            @Html.ValidationMessageFor(m => m.Domain, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.ClientStatus, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.ClientStatus, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.EnumDropDownListFor(m => m.ClientStatus, new {@class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.ClientStatus, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.HostingEndDate, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.HostingEndDate, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.DateTimePickerFor(m => m.HostingEndDate, DateTimeCategory.Date, new {@class = string.Format("{0}{1}", TemplatesConsts.INPUT, " input-required")})
+            @Html.ValidationMessageFor(m => m.HostingEndDate, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.HostSpace, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.HostSpace, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.HostSpace, new {@type = "number", @min = "0", @class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.HostSpace, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.PageQuota, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.PageQuota, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.PageQuota, new {@type = "number", @min = "0", @class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.PageQuota, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.UserQuota, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.UserQuota, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.UserQuota, new {@type = "number", @min = "0", @class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.UserQuota, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.PaymentPeriod, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.PaymentPeriod, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextBoxFor(m => m.PaymentPeriod, new {@type = "number", @min = "1", @class = string.Format("{0}{1}", TemplatesConsts.INPUT, " input-required")})
+            @Html.ValidationMessageFor(m => m.PaymentPeriod, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.PaymentMethod, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.PaymentMethod, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.EnumDropDownListFor(m => m.PaymentMethod, new {@class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.PaymentMethod, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.LastPaymentDate, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.LastPaymentDate, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.DateTimePickerFor(m => m.LastPaymentDate, DateTimeCategory.Date, new {@class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.LastPaymentDate, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.IsPaymentOk, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.IsPaymentOk, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.IsPaymentOk, new {@style = "margin-left: 0px;"})
+                @Html.ValidationMessageFor(m => m.IsPaymentOk, null, new {@class = "help-block"})
+            </div>
+        </div>
+    </div>
+    <div class="form-group@(Html.ValidationErrorFor(m => m.Comments, " has-error"))@(ViewData.ModelMetadata.IsRequired ? " required" : "")">
+        @Html.LabelFor(m => m.Comments, new {@class = TemplatesConsts.LABEL})
+        <div class="controls @TemplatesConsts.CONTROL">
+            @Html.TextAreaFor(m => m.Comments, new {@class = string.Format("{0}", TemplatesConsts.INPUT)})
+            @Html.ValidationMessageFor(m => m.Comments, null, new {@class = "help-block"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <button type="submit" class="btn btn-success">@Dnn.LocalizeString("Submit")</button>
+            <a id="cancelEdit" href="@Url.Action("Index", "Clients")" class="btn btn-danger">@Dnn.LocalizeString("Cancel")</a>
+        </div>
+    </div>
+</div>    
+}
