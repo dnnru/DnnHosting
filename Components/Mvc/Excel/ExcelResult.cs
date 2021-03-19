@@ -155,9 +155,8 @@ namespace Italliance.Modules.DnnHosting.Components.Mvc.Excel
                     currentCell.Style.Indent = 1;
                     currentCell.Style.HorizontalAlignment = currentColumnStyle.ExcelHorizontalAlignment;
                     currentCell.Style.VerticalAlignment = currentColumnStyle.ExcelVerticalAlignment;
-
                     currentCell.Style.WrapText = currentColumnStyle.WordWrap;
-
+                    currentCell.Style.Numberformat.Format = "@";
                     currentColumn++;
                 }
 

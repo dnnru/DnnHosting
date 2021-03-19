@@ -1,19 +1,18 @@
 ﻿#region
 
+using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 
 #endregion
 
 namespace Italliance.Modules.DnnHosting.Components.Mvc.ModelBinders
 {
-    public class ClientDtoModelBinder : DefaultModelBinder
+    public class CustomModelBinder : DefaultModelBinder
     {
-        protected override void BindProperty(
-            ControllerContext controllerContext, 
-            ModelBindingContext bindingContext, 
-            PropertyDescriptor propertyDescriptor)
+        protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
         {
             var propertyBinderAttribute = TryFindPropertyBinderAttribute(propertyDescriptor);
             if (propertyBinderAttribute != null)
@@ -28,16 +27,15 @@ namespace Italliance.Modules.DnnHosting.Components.Mvc.ModelBinders
             }
         }
 
-        IPropertyBinder CreateBinder(PropertyBinderAttribute propertyBinderAttribute)
+        private IPropertyBinder CreateBinder(PropertyBinderAttribute propertyBinderAttribute)
         {
-            return (IPropertyBinder)DependencyResolver.Current.GetService(propertyBinderAttribute.BinderType);
+            //return (IPropertyBinder) DependencyResolver.Current.GetService(propertyBinderAttribute.BinderType);
+            return (IPropertyBinder) Activator.CreateInstance(propertyBinderAttribute.BinderType, true);
         }
 
-        PropertyBinderAttribute TryFindPropertyBinderAttribute(PropertyDescriptor propertyDescriptor)
+        private PropertyBinderAttribute TryFindPropertyBinderAttribute(PropertyDescriptor propertyDescriptor)
         {
-            return propertyDescriptor.Attributes
-                                     .OfType<PropertyBinderAttribute>()
-                                     .FirstOrDefault();
+            return propertyDescriptor.Attributes.OfType<PropertyBinderAttribute>().FirstOrDefault();
         }
     }
 }

@@ -63,7 +63,7 @@ namespace Italliance.Modules.DnnHosting.Components.Mvc.DateTimePicker
                                                                                            {
                                                                                                {
                                                                                                    DateTimeCategory.Date,
-                                                                                                   string.Format(CultureInfo.CurrentCulture,
+                                                                                                   string.Format(CultureInfo.InvariantCulture,
                                                                                                                  PICKER_VIEW_SETTING_TEMPLATE,
                                                                                                                  (int) PickerViewCategory.Day,
                                                                                                                  (int) PickerViewCategory.Day,
@@ -71,7 +71,7 @@ namespace Italliance.Modules.DnnHosting.Components.Mvc.DateTimePicker
                                                                                                },
                                                                                                {
                                                                                                    DateTimeCategory.Month,
-                                                                                                   string.Format(CultureInfo.CurrentCulture,
+                                                                                                   string.Format(CultureInfo.InvariantCulture,
                                                                                                                  PICKER_VIEW_SETTING_TEMPLATE,
                                                                                                                  (int) PickerViewCategory.Month,
                                                                                                                  (int) PickerViewCategory.Month,
@@ -79,7 +79,7 @@ namespace Italliance.Modules.DnnHosting.Components.Mvc.DateTimePicker
                                                                                                },
                                                                                                {
                                                                                                    DateTimeCategory.Year,
-                                                                                                   string.Format(CultureInfo.CurrentCulture,
+                                                                                                   string.Format(CultureInfo.InvariantCulture,
                                                                                                                  PICKER_VIEW_SETTING_TEMPLATE,
                                                                                                                  (int) PickerViewCategory.Year,
                                                                                                                  (int) PickerViewCategory.Year,

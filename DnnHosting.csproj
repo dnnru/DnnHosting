@@ -75,8 +75,8 @@
       <HintPath>packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Handlebars, Version=2.0.4.0, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
-      <HintPath>packages\Handlebars.Net.2.0.4\lib\net46\Handlebars.dll</HintPath>
+    <Reference Include="Handlebars, Version=2.0.5.0, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
+      <HintPath>packages\Handlebars.Net.2.0.5\lib\net46\Handlebars.dll</HintPath>
     </Reference>
     <Reference Include="linq2db, Version=3.2.3.0, Culture=neutral, PublicKeyToken=e41013125f9e410a">
       <HintPath>packages\linq2db.3.2.3\lib\net46\linq2db.dll</HintPath>
@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Constants.cs" />
+    <Compile Include="Components\DateTimeHelper.cs" />
     <Compile Include="Components\ExcelDataExtractor\DataExtractor.cs" />
     <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\CollectionColumnDataExtractor.cs" />
     <Compile Include="Components\ExcelDataExtractor\DataExtractors\CollectionColumn\ColumnToCollectionConfiguration.cs" />
@@ -176,7 +177,7 @@
     <Compile Include="Components\FeatureController.cs" />
     <Compile Include="Components\IisAdministrationClient.cs" />
     <Compile Include="Components\IMapper.cs" />
-    <Compile Include="Components\ExcelHelper.cs" />
+    <Compile Include="Components\ImportHelper.cs" />
     <Compile Include="Components\Mapper.cs" />
     <Compile Include="Components\Mvc\Bootstrap\BootstrapControl.cs" />
     <Compile Include="Components\Mvc\Bootstrap\Buttons.cs" />
@@ -197,6 +198,11 @@
     <Compile Include="Components\Mvc\FlashMessages\FlashMessageSessionTransport.cs" />
     <Compile Include="Components\Mvc\FlashMessages\IFlashMessageTransport.cs" />
     <Compile Include="Components\Mvc\HtmlHelpers.cs" />
+    <Compile Include="Components\Mvc\ModelBinders\CustomModelBinder.cs" />
+    <Compile Include="Components\Mvc\ModelBinders\DateTimePropertyBinder.cs" />
+    <Compile Include="Components\Mvc\ModelBinders\IPropertyBinder.cs" />
+    <Compile Include="Components\Mvc\ModelBinders\NullableDateTimePropertyBinder.cs" />
+    <Compile Include="Components\Mvc\ModelBinders\PropertyBinderAttribute.cs" />
     <Compile Include="Components\Mvc\Paging\Pager.cs" />
     <Compile Include="Components\Mvc\Paging\PagerOptions.cs" />
     <Compile Include="Components\Mvc\Paging\PagerOptionsBuilder.cs" />

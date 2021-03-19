@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
@@ -87,7 +88,7 @@ namespace Italliance.Modules.DnnHosting.Components
                 List<ModuleInfo> modules = new List<ModuleInfo>();
                 foreach (PortalInfo portal in PortalController.Instance.GetPortalList(Null.NullString))
                 {
-                    ModuleInfo moduleInfo = ModuleController.Instance.GetModuleByDefinition(portal.PortalId, definitionInfo.DefinitionName);
+                    ModuleInfo moduleInfo = ModuleController.Instance.GetModuleByDefinition(portal.PortalID, definitionInfo.DefinitionName);
                     if (moduleInfo != null)
                     {
                         modules.Add(moduleInfo);
@@ -98,6 +99,19 @@ namespace Italliance.Modules.DnnHosting.Components
             }
 
             return null;
+        }
+
+        public static string ToInvariantString(this object obj)
+        {
+            return obj is IConvertible convertible ? convertible.ToString(CultureInfo.InvariantCulture) :
+                   obj is IFormattable formattable ? formattable.ToString(null, CultureInfo.InvariantCulture) : obj.ToString();
+        }
+
+        public static string ToCultureSpecificString(this object obj, CultureInfo cultureInfo)
+        {
+            return cultureInfo == null ? obj.ToInvariantString() :
+                   obj is IConvertible convertible ? convertible.ToString(cultureInfo) :
+                   obj is IFormattable formattable ? formattable.ToString(null, cultureInfo) : obj.ToString();
         }
 
         public static short ToShort(this string s, short defaultValue = 0)

@@ -2,15 +2,18 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Framework;
 using Italliance.Modules.DnnHosting.Components.Mvc.Excel;
+using Italliance.Modules.DnnHosting.Components.Mvc.ModelBinders;
 
 #endregion
 
 namespace Italliance.Modules.DnnHosting.Models
 {
     [ExcelSheetStyle(HeaderFontSize = 16, BodyFontSize = 14, FontFamily = "Times New Roman", IsHeaderBold = true)]
+    [ModelBinder(typeof(CustomModelBinder))]
     public sealed class ClientDto
     {
         [Display(Name = "Client Id", Order = 0)]
@@ -38,6 +41,7 @@ namespace Italliance.Modules.DnnHosting.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [ExcelValueFormat("dd.MM.yyyy")]
+        [PropertyBinder(typeof(DateTimePropertyBinder))]
         public DateTime HostingEndDate { get; set; } = DateTime.Now;
 
         [Display(Name = "File system limit (MB)", Order = 50)]
@@ -62,6 +66,7 @@ namespace Italliance.Modules.DnnHosting.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [ExcelValueFormat("dd.MM.yyyy")]
+        [PropertyBinder(typeof(NullableDateTimePropertyBinder))]
         public DateTime? LastPaymentDate { get; set; }
 
         [Display(Name = "Payment Method", Order = 100)]
@@ -117,12 +122,14 @@ namespace Italliance.Modules.DnnHosting.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm:ss}", ApplyFormatInEditMode = false)]
         [ExcelValueFormat("dd.MM.yyyy HH:mm:ss")]
+        [PropertyBinder(typeof(NullableDateTimePropertyBinder))]
         public DateTime? CreatedOnDate { get; set; } = DateTime.Now;
 
         [Display(Name = "Last Modified On Date", Order = 190)]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm:ss}", ApplyFormatInEditMode = false)]
         [ExcelValueFormat("dd.MM.yyyy HH:mm:ss")]
+        [PropertyBinder(typeof(NullableDateTimePropertyBinder))]
         public DateTime? LastModifiedOnDate { get; set; } = DateTime.Now;
 
         [Display(Name = "PortalId")]

@@ -1,6 +1,7 @@
 ﻿#region
 
 using DotNetNuke.Services.Scheduling;
+using System;
 
 #endregion
 
@@ -25,6 +26,7 @@ namespace Italliance.Modules.DnnHosting.Components.Tasks
             item.RetryTimeLapse = 10;
             item.RetryTimeLapseMeasurement = "m";
             item.RetainHistoryNum = 10;
+            item.ScheduleStartDate = DateTime.Now.AddMinutes(5);
             item.CatchUpEnabled = false;
             item.Enabled = true;
             item.ObjectDependencies = "";

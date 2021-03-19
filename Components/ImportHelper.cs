@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using DotNetNuke.Instrumentation;
@@ -46,24 +45,24 @@ namespace Italliance.Modules.DnnHosting.Components
                     List<SiteInfo> siteInfos = administrationClient.GetSiteInfosCached().ToList();
 
                     List<ClientDto> clientDtos = worksheet.Extract<ClientDto>()
-                                                       .WithProperty(c => c.ClientId, "A", ToInt)
-                                                       .WithProperty(c => c.Name, "B")
-                                                       .WithProperty(c => c.Email, "C")
-                                                       .WithProperty(c => c.Phone, "D")
-                                                       .WithProperty(c => c.Domain, "E")
-                                                       .WithProperty(c => c.HostingEndDate, "F", ToDateTime)
-                                                       .WithProperty(c => c.HostSpace, "G", ToInt)
-                                                       .WithProperty(c => c.PageQuota, "H", ToInt)
-                                                       .WithProperty(c => c.UserQuota, "I", ToInt)
-                                                       .WithProperty(c => c.PaymentPeriod, "J", ToShort)
-                                                       .WithProperty(c => c.LastPaymentDate, "K", ToNullableDateTime)
-                                                       .WithProperty(c => c.PaymentMethod, "L", ToPaymentMethod)
-                                                       .WithProperty(c => c.IsPaymentOk, "M", ToBoolean)
-                                                       .WithProperty(c => c.ClientStatus, "N", ToClientStatus)
-                                                       .WithProperty(c => c.Comments, "O")
-                                                       .GetData(excelAddress.Start.Row, excelAddress.End.Row)
-                                                       .ToList();
-                    
+                                                          .WithProperty(c => c.ClientId, "A", ToInt)
+                                                          .WithProperty(c => c.Name, "B")
+                                                          .WithProperty(c => c.Email, "C")
+                                                          .WithProperty(c => c.Phone, "D")
+                                                          .WithProperty(c => c.Domain, "E")
+                                                          .WithProperty(c => c.HostingEndDate, "F", ToDateTime)
+                                                          .WithProperty(c => c.HostSpace, "G", ToInt)
+                                                          .WithProperty(c => c.PageQuota, "H", ToInt)
+                                                          .WithProperty(c => c.UserQuota, "I", ToInt)
+                                                          .WithProperty(c => c.PaymentPeriod, "J", ToShort)
+                                                          .WithProperty(c => c.LastPaymentDate, "K", ToNullableDateTime)
+                                                          .WithProperty(c => c.PaymentMethod, "L", ToPaymentMethod)
+                                                          .WithProperty(c => c.IsPaymentOk, "M", ToBoolean)
+                                                          .WithProperty(c => c.ClientStatus, "N", ToClientStatus)
+                                                          .WithProperty(c => c.Comments, "O")
+                                                          .GetData(excelAddress.Start.Row, excelAddress.End.Row)
+                                                          .ToList();
+
                     foreach (ClientDto importedClientDto in clientDtos)
                     {
                         Client client = dataService.GetClient(importedClientDto.ClientId) ?? new Client();
@@ -169,7 +168,7 @@ namespace Italliance.Modules.DnnHosting.Components
 
         internal DateTime? ToNullableDateTime(object value)
         {
-            return value.ToDateTime();
+            return value is DateTime dateTime ? Convert.ToDateTime(dateTime) : value.ToDateTime();
         }
 
         internal PaymentMethod ToPaymentMethod(object value)
@@ -184,28 +183,39 @@ namespace Italliance.Modules.DnnHosting.Components
 
         internal DateTime ToDateTime(object value)
         {
+            if (value is DateTime dateTime)
+            {
+                return Convert.ToDateTime(dateTime);
+            }
+
             DateTime? result = value.ToDateTime();
             return result ?? DateTime.MinValue;
         }
 
         internal short ToShort(object value)
         {
-            if (value == null)
-            {
-                return 0;
-            }
-
-            return short.TryParse(value.ToString(), out short result) ? result : (short)0;
+            return value == null ? (short) 0 : short.TryParse(value.ToString(), out short result) ? result : (short) 0;
         }
 
         internal int ToInt(object value)
         {
-            if (value == null)
+            return value == null ? 0 : int.TryParse(value.ToString(), out int result) ? result : 0;
+        }
+        
+        public static string GetExcelColumnName(int columnNumber)
+        {
+            var dividend = columnNumber;
+            var columnName = string.Empty;
+
+            while (dividend > 0)
             {
-                return 0;
+                var modulo = (dividend - 1) % 26;
+                columnName = $"{Convert.ToChar(65 + modulo)}{columnName}";
+
+                dividend = (dividend - modulo) / 26;
             }
 
-            return int.TryParse(value.ToString(), out int result) ? result : 0;
+            return columnName;
         }
     }
 }

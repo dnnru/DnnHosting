@@ -64,21 +64,21 @@ namespace Italliance.Modules.DnnHosting.Components.Tasks
                     if (settings != null)
                     {
                         string updateStatusError = UpdateStatus(settings, moduleInfo.PortalID);
-                        if (string.IsNullOrWhiteSpace(updateStatusError))
+                        if (!string.IsNullOrWhiteSpace(updateStatusError))
                         {
-                            errorBuilder.AppendFormat("Update Status Error: {0}", updateStatusError);
+                            errorBuilder.AppendFormat("Update Status Error: {0}{1}", updateStatusError, Environment.NewLine);
                         }
 
                         string sendEmailToClientError = SendEmailToClient(settings, moduleInfo.PortalID);
-                        if (string.IsNullOrWhiteSpace(sendEmailToClientError))
+                        if (!string.IsNullOrWhiteSpace(sendEmailToClientError))
                         {
-                            errorBuilder.AppendFormat("Send Email To Client Error: {0}", sendEmailToClientError);
+                            errorBuilder.AppendFormat("Send Email To Client Error: {0}{1}", sendEmailToClientError, Environment.NewLine);
                         }
 
                         string sendEmailToAdminError = SendEmailToAdmin(settings, moduleInfo.PortalID);
-                        if (string.IsNullOrWhiteSpace(sendEmailToClientError))
+                        if (!string.IsNullOrWhiteSpace(sendEmailToClientError))
                         {
-                            errorBuilder.AppendFormat("Send Email To Admin Error: {0}", sendEmailToAdminError);
+                            errorBuilder.AppendFormat("Send Email To Admin Error: {0}{1}", sendEmailToAdminError, Environment.NewLine);
                         }
                     }
                 }

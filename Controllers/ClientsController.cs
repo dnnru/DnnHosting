@@ -159,6 +159,10 @@ namespace Italliance.Modules.DnnHosting.Controllers
                 return RedirectToDefaultRoute();
             }
 
+            var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
+            var modelErrors = errors.Select(m => new {m.ErrorMessage, ModelException = m.Exception.ToString() });
+            Logger.Error(modelErrors);
+
             return View(clientDto);
         }
 

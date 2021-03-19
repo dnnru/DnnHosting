@@ -1,7 +1,10 @@
-﻿namespace Italliance.Modules.DnnHosting.Components.Mvc.ModelBinders
+﻿using System.ComponentModel;
+using System.Web.Mvc;
+
+namespace Italliance.Modules.DnnHosting.Components.Mvc.ModelBinders
 {
-    public class IPropertyBinder
+    interface IPropertyBinder
     {
-        
+        object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext, MemberDescriptor memberDescriptor);
     }
 }
