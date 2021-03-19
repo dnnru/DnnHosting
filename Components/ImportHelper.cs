@@ -169,14 +169,7 @@ namespace Italliance.Modules.DnnHosting.Components
 
         internal DateTime? ToNullableDateTime(object value)
         {
-            if (value == null)
-            {
-                return null;
-            }
-
-            return DateTime.TryParseExact(value.ToString(), new[] {"dd.MM.yyyy HH:mm:ss", "dd.MM.yyyy"}, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result)
-                       ? result
-                       : (DateTime?) null;
+            return value.ToDateTime();
         }
 
         internal PaymentMethod ToPaymentMethod(object value)
@@ -191,14 +184,8 @@ namespace Italliance.Modules.DnnHosting.Components
 
         internal DateTime ToDateTime(object value)
         {
-            if (value == null)
-            {
-                return DateTime.Now.AddYears(-1);
-            }
-
-            return DateTime.TryParseExact(value.ToString(), new[] {"dd.MM.yyyy HH:mm:ss", "dd.MM.yyyy"}, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result)
-                       ? result
-                       : DateTime.Now.AddYears(-1);
+            DateTime? result = value.ToDateTime();
+            return result ?? DateTime.MinValue;
         }
 
         internal short ToShort(object value)
